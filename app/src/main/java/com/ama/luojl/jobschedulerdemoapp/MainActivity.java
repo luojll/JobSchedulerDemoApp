@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Helpers.scheduleJob(getApplicationContext(), ++jobCnt);
-                Log.i(TAG, "id: " + jobCnt + ", schedule job");
             }
         });
         cancelJobBtn.setOnClickListener(new View.OnClickListener() {
