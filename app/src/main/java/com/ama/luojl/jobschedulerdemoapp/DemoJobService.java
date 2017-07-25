@@ -52,7 +52,6 @@ public class DemoJobService extends JobService {
             } catch (InterruptedException e) {
                 Log.w(TAG, "id: " + jobId + ", Thread interrupted");
             }
-            Log.i(TAG, "id: " + jobId + ", Sleep Done");
             return jobParam;
         }
 
