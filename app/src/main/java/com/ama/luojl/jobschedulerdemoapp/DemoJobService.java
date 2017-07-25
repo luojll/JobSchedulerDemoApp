@@ -17,16 +17,16 @@ public class DemoJobService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        final int id = params.getJobId();
-        Log.i(TAG, "onStartJob, id: " + id);
+        final int jobId = params.getJobId();
+        Log.i(TAG, "id: " + jobId + ", onStartJob");
         new JobTask(this).execute(params);
-        return false;
+        return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        final int id = params.getJobId();
-        Log.i(TAG, "onStopJob, id: " + id);
+        final int jobId = params.getJobId();
+        Log.w(TAG, "id: " + jobId + ", onStopJob");
         return false;
     }
 
@@ -41,20 +41,20 @@ public class DemoJobService extends JobService {
         protected JobParameters doInBackground(JobParameters... jobParameterses) {
             JobParameters job = jobParameterses[0];
             int jobId = job.getJobId();
-            Log.i(TAG, "doInBackground, id: " + jobId);
+            Log.i(TAG, "id: " + jobId + ", doInBackground");
             try {
                 Thread.sleep(SLEEP_TIME);
             } catch (InterruptedException e) {
-                Log.w(TAG, "Thread interrupted, id: " + jobId);
+                Log.w(TAG, "id: " + jobId + ", Thread interrupted");
             }
-            Log.i(TAG, "Sleep Done, id: " + jobId);
+            Log.i(TAG, "id: " + jobId + ", Sleep Done");
             return job;
         }
 
         @Override
         protected void onPostExecute(JobParameters jobParameters) {
             int jobId = jobParameters.getJobId();
-            Log.i(TAG, "onPostExecute, id: " + jobId);
+            Log.i(TAG, "id: " + jobId + ", onPostExecute");
             mJobService.jobFinished(jobParameters, false);
         }
     }
