@@ -5,11 +5,13 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private TextView textView;
 
@@ -36,12 +38,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Helpers.scheduleJob(getApplicationContext(), ++jobCnt);
+                Log.i(TAG, "id: " + jobCnt + ", schedule job");
             }
         });
         cancelJobBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final JobScheduler scheduler = getApplicationContext().getSystemService(JobScheduler.class);
+                Log.w(TAG, "id: " + jobCnt + ", cancel job");
                 scheduler.cancel(jobCnt);
             }
         });
