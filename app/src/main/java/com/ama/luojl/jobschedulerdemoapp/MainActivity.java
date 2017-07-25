@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button startJobBtn;
     private Button cancelJobBtn;
+    private Button cancelAllJobBtn;
 
     private int jobCnt = 0;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         startJobBtn = (Button) findViewById(R.id.startJobBtn);
         cancelJobBtn = (Button) findViewById(R.id.cancelJobBtn);
+        cancelAllJobBtn = (Button) findViewById(R.id.cancelAllJobBtn);
 
         startJobBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,9 +46,17 @@ public class MainActivity extends AppCompatActivity {
         cancelJobBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final JobScheduler scheduler = getApplicationContext().getSystemService(JobScheduler.class);
-                Log.w(TAG, "id: " + jobCnt + ", cancel job");
+                final JobScheduler scheduler = Helpers.getJobScheduler(getApplicationContext());
                 scheduler.cancel(jobCnt);
+                Log.w(TAG, "id: " + jobCnt + ", cancel job");
+            }
+        });
+        cancelAllJobBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final JobScheduler scheduler = Helpers.getJobScheduler(getApplicationContext());
+                scheduler.cancelAll();
+                Log.w(TAG, "Cancel all jobs");
             }
         });
     }

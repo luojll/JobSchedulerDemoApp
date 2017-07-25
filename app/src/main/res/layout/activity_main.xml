@@ -21,20 +21,29 @@
         android:id="@+id/startJobBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Start"
+        android:layout_marginStart="39dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="54dp"
-        android:layout_marginEnd="34dp"
-        android:layout_toStartOf="@+id/infoView"
-        android:text="Start" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/cancelJobBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
         android:text="Cancel"
         android:layout_alignBaseline="@+id/startJobBtn"
         android:layout_alignBottom="@+id/startJobBtn"
-        android:layout_toEndOf="@+id/infoView" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/cancelAllJobBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel All"
+        android:layout_alignBaseline="@+id/cancelJobBtn"
+        android:layout_alignBottom="@+id/cancelJobBtn"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="39dp" />
 
 </RelativeLayout>

@@ -12,7 +12,7 @@ import android.content.Context;
 public class Helpers {
 
     public static void scheduleJob(Context context, int id) {
-        final JobScheduler scheduler = context.getSystemService(JobScheduler.class);
+        final JobScheduler scheduler = getJobScheduler(context);
 
         final JobInfo.Builder builder = new JobInfo.Builder(id,
                 new ComponentName(context, DemoJobService.class));
@@ -20,5 +20,9 @@ public class Helpers {
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED);
 
         scheduler.schedule(builder.build());
+    }
+
+    public static JobScheduler getJobScheduler(Context context) {
+        return context.getSystemService(JobScheduler.class);
     }
 }

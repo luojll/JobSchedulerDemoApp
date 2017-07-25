@@ -13,7 +13,12 @@ import android.util.Log;
 public class DemoJobService extends JobService {
     private static final String TAG = "DemoJobService";
 
-    private static final int SLEEP_TIME = 5*1000;
+    private static final int SLEEP_TIME = 5*1000; // 5 seconds
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -39,8 +44,8 @@ public class DemoJobService extends JobService {
 
         @Override
         protected JobParameters doInBackground(JobParameters... jobParameterses) {
-            JobParameters job = jobParameterses[0];
-            int jobId = job.getJobId();
+            JobParameters jobParam = jobParameterses[0];
+            int jobId = jobParam.getJobId();
             Log.i(TAG, "id: " + jobId + ", doInBackground");
             try {
                 Thread.sleep(SLEEP_TIME);
@@ -48,7 +53,7 @@ public class DemoJobService extends JobService {
                 Log.w(TAG, "id: " + jobId + ", Thread interrupted");
             }
             Log.i(TAG, "id: " + jobId + ", Sleep Done");
-            return job;
+            return jobParam;
         }
 
         @Override
