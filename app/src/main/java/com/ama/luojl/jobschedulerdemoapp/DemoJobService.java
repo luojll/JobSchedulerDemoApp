@@ -18,6 +18,13 @@ public class DemoJobService extends JobService {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.i(TAG, "onCreate");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.w(TAG, "onDestroy");
     }
 
     @Override
